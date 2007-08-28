@@ -72,7 +72,6 @@ Icon=%{name}
 Terminal=false
 Type=Application
 Categories=X-MandrivaLinux-Office-Accessories;Office;Utility;
-Encoding=UTF-8
 EOF
 
 
