@@ -1,5 +1,5 @@
 %define name	opengrade
-%define version	2.7.13
+%define version	2.7.15
 %define release	%mkrel 1
 
 Summary:	Local and web-based gradebook
@@ -8,7 +8,7 @@ Version:	%version
 Release:	%release
 License:	GPL
 Group:		Office
-Source0:	http://www.lightandmatter.com/ogr/%name-%version.tar.bz2
+Source0:	http://www.lightandmatter.com/ogr/%name-%version.tar.gz
 Source1: 	%{name}48.png
 Source2: 	%{name}32.png
 Source3: 	%{name}16.png
@@ -18,6 +18,7 @@ Requires:	perl-Term-ReadKey perl-Date-Calc perl-Digest-SHA1 perl-Tk
 Requires:	tk
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
+BuildRequires:	imagemagick
 Provides:	perl(FileDialogPatched)
 
 %description
@@ -56,12 +57,6 @@ mkdir -p $RPM_BUILD_ROOT/%_bindir
 cp *.pm $RPM_BUILD_ROOT/%perl_vendorlib
 cp %name $RPM_BUILD_ROOT/%_bindir
 
-#menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): command="%{name}" icon="%name.png" needs="x11" title="OpenGrade" longtitle="Digital Gradebook" section="Office/Accessories" xdg="true"
-EOF
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -71,17 +66,17 @@ Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-Office-Accessories;Office;Utility;
+Categories=Utility;
 EOF
 
 
 #icons
 mkdir -p $RPM_BUILD_ROOT/%_liconsdir
-cat %SOURCE1 > $RPM_BUILD_ROOT/%_liconsdir/%name.png
+cp opengrade_icon.png $RPM_BUILD_ROOT/%_liconsdir/%name.png
 mkdir -p $RPM_BUILD_ROOT/%_iconsdir
-cat %SOURCE2 > $RPM_BUILD_ROOT/%_iconsdir/%name.png
+convert -resize 32x32 opengrade_icon.png $RPM_BUILD_ROOT/%_iconsdir/%name.png
 mkdir -p $RPM_BUILD_ROOT/%_miconsdir
-cat %SOURCE3 > $RPM_BUILD_ROOT/%_miconsdir/%name.png
+convert -resize 16x16 opengrade_icon.png $RPM_BUILD_ROOT/%_miconsdir/%name.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -97,10 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README Copying %{name}.pdf *.gb *.cgi *.sty
 %_bindir/%name
 %perl_vendorlib/*
-%_menudir/%name
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
 %{_datadir}/applications/mandriva-%{name}.desktop
-
-
