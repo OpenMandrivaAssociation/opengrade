@@ -9,10 +9,7 @@ Release:	%release
 License:	GPL
 Group:		Office
 Source0:	http://www.lightandmatter.com/ogr/%name-%version.tar.gz
-Source1: 	%{name}48.png
-Source2: 	%{name}32.png
-Source3: 	%{name}16.png
-Source4:	%{name}_doc.pdf.bz2
+Source4:	http://www.lightandmatter.com/ogr/%{name}_doc.pdf
 Url:		http://www.lightandmatter.com/ogr/ogr.html
 Requires:	perl-Term-ReadKey perl-Date-Calc perl-Digest-SHA1 perl-Tk
 Requires:	tk
@@ -42,20 +39,18 @@ OpenGrade is software for teachers to keep track of grades.
 
 %prep
 %setup -q
-bzcat %SOURCE4 > %name.pdf
+cp %SOURCE4 %{name}.pdf
 
 %build
-make
 mv %name.pl %name
 perl -p -i -e 's|/usr/local|/usr||g' %name
-chmod 755 %name
 
 %install
 rm -fr $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%perl_vendorlib
 mkdir -p $RPM_BUILD_ROOT/%_bindir
-cp *.pm $RPM_BUILD_ROOT/%perl_vendorlib
-cp %name $RPM_BUILD_ROOT/%_bindir
+install -m644 *.pm $RPM_BUILD_ROOT/%perl_vendorlib
+install -m755 %name $RPM_BUILD_ROOT/%_bindir
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -68,7 +63,6 @@ Terminal=false
 Type=Application
 Categories=Utility;
 EOF
-
 
 #icons
 mkdir -p $RPM_BUILD_ROOT/%_liconsdir
@@ -89,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README Copying %{name}.pdf *.gb *.cgi *.sty
+%doc README Copying *.pdf *.gb *.cgi *.sty
 %_bindir/%name
 %perl_vendorlib/*
 %{_liconsdir}/%name.png
