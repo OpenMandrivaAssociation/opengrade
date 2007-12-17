@@ -13,7 +13,6 @@ Source4:	http://www.lightandmatter.com/ogr/%{name}_doc.pdf
 Url:		http://www.lightandmatter.com/ogr/ogr.html
 Requires:	perl-Term-ReadKey perl-Date-Calc perl-Digest-SHA1 perl-Tk
 Requires:	tk
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
 BuildRequires:	imagemagick
 Provides:	perl(FileDialogPatched)
