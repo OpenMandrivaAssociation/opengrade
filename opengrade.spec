@@ -1,5 +1,5 @@
 %define name	opengrade
-%define version	2.7.15
+%define version	2.8.1
 %define release	%mkrel 1
 
 Summary:	Local and web-based gradebook
