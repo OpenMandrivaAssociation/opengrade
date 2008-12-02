@@ -1,12 +1,12 @@
 %define name	opengrade
-%define version	2.8.2
-%define release	%mkrel 2
+%define version	2.8.3
+%define release	%mkrel 1
 
 Summary:	Local and web-based gradebook
 Name:		%name
 Version:	%version
 Release:	%release
-License:	GPL
+License:	GPLv2
 Group:		Office
 Source0:	http://www.lightandmatter.com/ogr/%name-%version.tar.gz
 Source4:	http://www.lightandmatter.com/ogr/%{name}_doc.pdf
