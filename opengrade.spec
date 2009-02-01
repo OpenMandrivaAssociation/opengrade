@@ -1,5 +1,5 @@
 %define name	opengrade
-%define version	3.0.2
+%define version	3.1.0
 %define release	%mkrel 1
 
 Summary:	Local and web-based gradebook
@@ -86,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README Copying *.pdf *.gb *.cgi *.sty
+%doc README *.pdf *.gb *.cgi *.sty
 %_bindir/%name
 %perl_vendorlib/*
 %{_liconsdir}/%name.png
