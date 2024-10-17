@@ -11,7 +11,7 @@ Group:		Education
 Source0:	opengrade-3.1.17.tar.gz
 Source1:	%{name}.desktop
 Source2:	http://www.lightandmatter.com/ogr/%{name}_doc.pdf
-Url:		http://www.lightandmatter.com/ogr/ogr.html
+Url:		https://www.lightandmatter.com/ogr/ogr.html
 Requires:	tk
 BuildArch:	noarch
 BuildRequires:	imagemagick
